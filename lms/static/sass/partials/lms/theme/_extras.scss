@@ -1,0 +1,15 @@
+.home .courses-container .courses .courses-listing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .courses-listing-item {
+    margin: 0 20px 30px 20px;
+    // Fix right margin
+    &:nth-child(4n), &:last-child {
+      margin-right: 20px;
+    }
+  }
+}    .courses-container .courses .course { border-radius: 6%; padding: 2%;}
+
+// Fonts
+@import "fonts";

@@ -1,0 +1,18 @@
+@font-face {
+   font-family: 'Quicksand';
+   src: url('#{$static-path}/fonts/Quicksand-VariableFont_wght.ttf') format('truetype supports variations'),
+        url('#{$static-path}/fonts/Quicksand-VariableFont_wght.ttf') format('truetype-variations');
+}
+
+/* Example:
+
+@font-face {
+    font-family: 'font name';
+    src: url('#{$static-path}/fonts/font_name-Regular.woff2') format('woff2'),
+        url('#{$static-path}/fonts/font_name-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+*/
