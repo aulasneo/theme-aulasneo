@@ -83,55 +83,54 @@ course_mode_class = course_mode if course_mode else ''
 </style>
         <main class="accomplishment accomplishment-main">
 
-<div class="wrapper-accomplishment-rendering">
-    <div class="accomplishment-rendering">
-        <img class="aulasneo-cert-background" src="${static.certificate_asset_url('aulasneo-cert-background')}" width="100%" height= "100%" style="position: absolute">
-        <div class="accomplishment-type">
-            <img height="60rem" class="organization-logo" src="${logo_src}" alt="${platform_name}">
-        </div>
-
-        <div class="wrapper-statement-and-signatories">
-            <div class="accomplishment-statement">
-                <p class="accomplishment-statement-lead">
-                    <span class="accomplishment-summary copy copy-lead">${titulo_1 | n}</span>
-                    <strong class="accomplishment-recipient hd-1 emphasized">${accomplishment_copy_name}</strong>
-                    <span class="accomplishment-summary copy copy-lead">${accomplishment_copy_description_full | n}<strong>${accomplishment_copy_course_name}</strong>${accomplishment_copy_description_full_2 | n}</span>
-
-                </p>
-
-            </div>
-
-            <div class="accomplishment-signatories">
-                <h3 class="accomplishment-signatories-title sr-only">${_("Noted by")}</h3>
-
-                <div class="wrapper-signatories">
-                    <div class="list-signatories">
-                        % if certificate_data:
-                            % for signatory in certificate_data.get('signatories', []):
-                                % if signatory.get('signature_image_path'):
-                                    <div class="signatory">
-                                        <img class="signatory-signature" style="display:block;" src="${static.url(signatory['signature_image_path'])}" alt="${signatory['name']}">
-
-                                        <h4 class="signatory-name hd-5">${signatory['name']}</h4>
-                                        <p class="signatory-credentials copy copy-micro">
-                                            <span class="role">${signatory['title']}</span>
-                                            <span class="organization">${signatory['organization']}</span>
-                                        </p>
-                                    </div>
-                                % endif
-                            % endfor
-                        % endif
+            <div class="wrapper-accomplishment-rendering">
+                <div class="accomplishment-rendering">
+                    <img class="aulasneo-cert-background" src="${static.certificate_asset_url('aulasneo-cert-background')}" width="100%" height= "100%" style="position: absolute">
+                    <div class="accomplishment-type">
+                        <img height="60rem" class="organization-logo" src="${logo_src}" alt="${platform_name}">
                     </div>
+
+                    <div class="wrapper-statement-and-signatories">
+                        <div class="accomplishment-statement">
+                            <p class="accomplishment-statement-lead">
+                                <span class="accomplishment-summary copy copy-lead">${context.get("text_1", "Certifies that" | n}</span>
+                                <strong class="accomplishment-recipient hd-1 emphasized">${accomplishment_copy_name}</strong>
+                                <span class="accomplishment-summary copy copy-lead">${context.get("text_2", "completed the course ") | n}<strong>${accomplishment_copy_course_name}</strong>${context.get('text_3', " and is therefore awarded this certificate of completion.") | n}</span>
+
+                            </p>
+
+                        </div>
+
+                        <div class="accomplishment-signatories">
+                            <h3 class="accomplishment-signatories-title sr-only">${_("Noted by")}</h3>
+
+                            <div class="wrapper-signatories">
+                                <div class="list-signatories">
+                                    % if certificate_data:
+                                        % for signatory in certificate_data.get('signatories', []):
+                                            % if signatory.get('signature_image_path'):
+                                                <div class="signatory">
+                                                    <img class="signatory-signature" style="display:block;" src="${static.url(signatory['signature_image_path'])}" alt="${signatory['name']}">
+
+                                                    <h4 class="signatory-name hd-5">${signatory['name']}</h4>
+                                                    <p class="signatory-credentials copy copy-micro">
+                                                        <span class="role">${signatory['title']}</span>
+                                                        <span class="organization">${signatory['organization']}</span>
+                                                    </p>
+                                                </div>
+                                            % endif
+                                        % endfor
+                                    % endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <img src="${static.certificate_asset_url(footer_slug)}" width="85%" class="cert-logos-image">
+
                 </div>
             </div>
-        </div>
-
-
-        <img src="${static.certificate_asset_url(footer_slug)}" width="85%" class="cert-logos-image">
-
-    </div>
-</div>
-</main>
 
 
     <div class="wrapper-accomplishment-metadata">
