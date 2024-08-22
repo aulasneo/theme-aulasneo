@@ -93,7 +93,7 @@ course_mode_class = course_mode if course_mode else ''
                     <div class="wrapper-statement-and-signatories">
                         <div class="accomplishment-statement">
                             <p class="accomplishment-statement-lead">
-                                <span class="accomplishment-summary copy copy-lead">${context.get("text_1", "Certifies that" | n}</span>
+                                <span class="accomplishment-summary copy copy-lead">${context.get("text_1", "Certifies that") | n}</span>
                                 <strong class="accomplishment-recipient hd-1 emphasized">${accomplishment_copy_name}</strong>
                                 <span class="accomplishment-summary copy copy-lead">${context.get("text_2", "completed the course ") | n}<strong>${accomplishment_copy_course_name}</strong>${context.get('text_3', " and is therefore awarded this certificate of completion.") | n}</span>
 
