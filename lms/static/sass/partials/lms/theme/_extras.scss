@@ -2,14 +2,138 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
   .courses-listing-item {
     margin: 0 20px 30px 20px;
+
     // Fix right margin
-    &:nth-child(4n), &:last-child {
+    &:nth-child(4n),
+    &:last-child {
       margin-right: 20px;
     }
   }
-}    .courses-container .courses .course { border-radius: 6%; padding: 2%;}
+}
 
-// Fonts
-@import "fonts";
+.courses-container .courses .course {
+  border-radius: 6%;
+  padding: 2%;
+}
+
+// Osano styles //
+
+// -- Banner dialog -- //
+.osano-cm-dialog {
+  background: #e2e8f0 !important;
+  color: #133979 !important;
+}
+
+.osano-cm-storage-policy .osano-cm-content__link .osano-cm-link {
+  color: #4e359e !important;
+}
+
+.osano-cm-link:hover,
+.osano-cm-link:active {
+  color: #0067ff;
+}
+
+button.osano-cm-info-dialog-header__close.osano-cm-close svg {
+  background: transparent !important;
+  box-shadow: none !important;
+  stroke: black !important;
+}
+
+.osano-cm-close {
+  background: transparent !important;
+  box-shadow: none !important;
+  stroke: black !important;
+}
+
+.osano-cm-dialog__close {
+  background: transparent !important;
+  box-shadow: none !important;
+  stroke: black !important;
+}
+
+.osano-cm-dialog__close:hover {
+  stroke: black;
+  background: transparent !important;
+}
+
+// -- Icon widget -- //
+
+.osano-cm-widget {
+  box-shadow: none !important;
+}
+
+.osano-cm-widget:focus,
+.osano-cm-widget:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+// -- Button close -- //
+.osano-cm-info-dialog-header__close {
+  background: transparent !important;
+  box-shadow: none !important;
+  stroke: black !important;
+}
+
+.osano-cm-info-dialog-header__close .osano-cm-close {
+  background: transparent !important;
+  box-shadow: none !important;
+  stroke: black !important;
+}
+
+.osano-cm-info-dialog-header__close:focus {
+  background-color: transparent;
+  border-color: #000;
+  border: none !important;
+}
+
+.osano-cm-close:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+// -- Button save -- //
+.osano-cm-button {
+  background: #e3a22e !important;
+  border: none;
+  box-shadow: none;
+  border-radius: 7px;
+  font-weight: 200;
+  font-size: small;
+}
+
+.osano-cm-button:hover {
+  background: #b47f22 !important;
+}
+
+.osano-cm-powered-by__link .osano-cm-link {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+// -- Buttons select -- //
+.osano-cm-toggle__input:checked+.osano-cm-toggle__switch {
+  background-color: #366FE1 !important;
+  border-color: #366FE1 !important;
+}
+
+.osano-cm-toggle__input:checked:focus+.osano-cm-toggle__switch,
+.osano-cm-toggle__input:checked:hover+.osano-cm-toggle__switch {
+  background-color: #366FE1 !important;
+  border-color: #366FE1 !important;
+}
+
+.osano-cm-toggle__input:checked:focus+.osano-cm-toggle__switch::before {
+  border: none !important
+}
+
+// -- Link Osano -- //
+.osano-cm-powered-by__link {
+  font-size: .625em !important;
+  color: #133979 !important;
+  outline: none;
+  text-decoration: none;
+}
