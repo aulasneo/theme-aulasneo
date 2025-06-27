@@ -1,0 +1,154 @@
+<%page expression_filter="h"/>
+<%inherit file="main.html" />
+<%namespace name='static' file='static_content.html'/>
+<%namespace file='main.html' import="login_query"/>
+<%!
+from django.utils.translation import gettext as _
+from django.urls import reverse
+from django.conf import settings
+
+from openedx.core.djangolib.markup import HTML, Text
+%>
+
+<style>
+
+  /* Delete margin and paddings  */
+  .content-wrapper {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .course-info .safari-wrapper {
+    padding-bottom: 0;
+  }
+</style>
+
+<main id="main" aria-label="Content" tabindex="-1">
+  <section  id="home" class="home">
+    <header>
+      <video tabindex="-1" class="background-video" id="background-video" data-media-target="videojs"
+        data-setup="{&quot;controls&quot;:true,&quot;autoplay&quot;:true,&quot;preload&quot;:&quot;none&quot;,&quot;muted&quot;:true,&quot;loop&quot;:true,&quot;fluid&quot;:false,&quot;aspectRatio&quot;:&quot;16:9&quot;}"
+        preload="none" loop muted autoplay>
+        <source src="https://aulasneo-videos.s3.us-west-2.amazonaws.com/4495519-uhd_3840_2160_25fps.mp4"
+          type="video/mp4">
+      </video>
+
+      <div class="home-banner-info">
+        <h2 class="home-banner-title">WELCOME TO</h2>
+        <h2 class="home-banner-title">AULASNEO CAMPUS</h2>
+        <p class="home-banner-description">Discover a new way to learn, teach, and grow.
+          Explore innovative courses and learning experiences designed to transform knowledge into action.
+          Be part of a dynamic, flexible, and global learning community.</p>
+        <div class="buttons-container">
+          <a class="enroll-button" href="${settings.AUTHN_MICROFRONTEND_URL}/register${login_query()}">Enroll for
+            free</a>
+          <a class="sign-in-button" href="${settings.AUTHN_MICROFRONTEND_URL}/login${login_query()}">Sign in</a>
+        </div>
+      </div>
+    </header>
+  </section>
+</main>
+
+<section id="courses">
+  <%include file="${courses_list}" />
+</section>
+
+
+<script>
+  const container = document.getElementById('experts');
+  const slider = document.getElementById('slider');
+  const slides = document.getElementsByClassName('slide');
+
+  let currentPosition = 0;
+  let currentMargin = 0;
+  let slidesPerPage = 0;
+  let slidesCount = 0;
+  let containerWidth = container.offsetWidth;
+
+  function setParams(width) {
+    if (width < 551) {
+      slidesPerPage = 1;
+    } else if (width < 901) {
+      slidesPerPage = 2;
+    } else if (width < 1101) {
+      slidesPerPage = 3;
+    } else {
+      slidesPerPage = 4;
+    }
+
+    slidesCount = slides.length - slidesPerPage;
+
+    if (currentPosition > slidesCount) {
+      currentPosition = slidesCount;
+    }
+
+    currentMargin = -currentPosition * (100 / slidesPerPage);
+    slider.style.marginLeft = currentMargin + '%';
+  }
+
+  setParams(containerWidth);
+
+  window.addEventListener('resize', () => {
+    containerWidth = container.offsetWidth;
+    setParams(containerWidth);
+  });
+
+  function slideRight() {
+    if (currentPosition > 0) {
+      currentPosition--;
+      currentMargin = -currentPosition * (100 / slidesPerPage);
+      slider.style.marginLeft = currentMargin + '%';
+    }
+  }
+
+  function slideLeft() {
+    if (currentPosition < slidesCount) {
+      currentPosition++;
+      currentMargin = -currentPosition * (100 / slidesPerPage);
+      slider.style.marginLeft = currentMargin + '%';
+    }
+  }
+</script>
+
+
+% if show_homepage_promo_video:
+<section id="video-modal" class="modal home-page-video-modal video-modal">
+  <div class="inner-wrapper">
+    <iframe title="YouTube Video" width="640" height="360"
+      src="//www.youtube.com/embed/${homepage_promo_video_youtube_id}?showinfo=0" frameborder="0"
+      allowfullscreen></iframe>
+  </div>
+</section>
+% endif
+
+<%block name="js_extra">
+  <script type="text/javascript">
+    $(window).load(function () {
+      if (getParameterByName('next')) {
+        $('#login').trigger("click");
+      }
+    })
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.banner-footer-section').forEach(section => {
+        section.addEventListener('click', function () {
+          const targetId = this.getAttribute('data-target');
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    });
+  </script>
+</%block>
+
+% if show_signup_immediately is not UNDEFINED:
+## NOTE: This won't work in production, because anonymous views are cached, so it will
+## show either with or without this extra js for 3 minutes at a time.
+<script type="text/javascript">
+  $(window).load(function () { $('#signup_action').trigger("click"); });
+</script>
+% endif
