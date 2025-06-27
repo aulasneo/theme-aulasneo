@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <ul class="courses-listing">
         % for course in courses:
         <li
-          class="courses-listing-item course-card lan-${course._original_course.language} level-${course._original_course.other_course_settings.get('courseLevel', 'none')}">
+          class="courses-listing-item course-card">
           <%include file="course.html" args="course=course" />
         </li>
         % endfor
