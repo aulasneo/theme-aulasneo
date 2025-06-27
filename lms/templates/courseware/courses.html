@@ -9,98 +9,36 @@
   document.addEventListener("DOMContentLoaded", () => {
     const cards = Array.from(document.querySelectorAll(".course-card"));
     const noCoursesMessage = document.getElementById("no-courses-message");
-    const paginationContainer = document.querySelector(".pagination");
-    const prevBtn = document.getElementById("prev-page");
-    const nextBtn = document.getElementById("next-page");
     const searchInput = document.getElementById('discovery-input');
-
-    let filteredCards = [];
-    let currentPage = 1;
-    const cardsPerPage = 4;
 
     function filterCards() {
       const searchText = searchInput.value.toLowerCase().trim();
-      filteredCards = cards.filter(card => {
+      let visibleCount = 0;
+      cards.forEach(card => {
         const title = card.querySelector('.course-title')?.textContent.toLowerCase() || '';
         const organization = card.querySelector('.course-organization')?.textContent.toLowerCase() || '';
         const code = card.querySelector('.course-code')?.textContent.toLowerCase() || '';
-        return (
+        const matches = (
           searchText === "" ||
           title.includes(searchText) ||
           organization.includes(searchText) ||
           code.includes(searchText)
         );
+        card.style.display = matches ? "flex" : "none";
+        if (matches) visibleCount++;
       });
-    }
-
-    function showPage(page) {
-      cards.forEach(card => card.style.display = "none");
-      const startIndex = (page - 1) * cardsPerPage;
-      const endIndex = startIndex + cardsPerPage;
-      filteredCards.slice(startIndex, endIndex).forEach(card => card.style.display = "flex");
-    }
-
-    function generatePaginationButtons(totalPages) {
-      paginationContainer.innerHTML = '';
-      const maxVisiblePages = 3;
-      let startPage = Math.max(currentPage - Math.floor(maxVisiblePages / 2), 1);
-      let endPage = startPage + maxVisiblePages - 1;
-
-      if (endPage > totalPages) {
-        endPage = totalPages;
-        startPage = Math.max(endPage - maxVisiblePages + 1, 1);
-      }
-
-      for (let i = startPage; i <= endPage; i++) {
-        const button = document.createElement("button");
-        button.textContent = i;
-        button.classList.add("pagination-btn");
-        if (i === currentPage) button.classList.add("active");
-        button.addEventListener("click", () => {
-          currentPage = i;
-          updatePagination();
-        });
-        paginationContainer.appendChild(button);
-      }
-
-      prevBtn.disabled = currentPage === 1;
-      nextBtn.disabled = currentPage === totalPages || totalPages === 0;
-    }
-
-    function updatePagination() {
-      const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
-      showPage(currentPage);
-      generatePaginationButtons(totalPages);
-      noCoursesMessage.style.display = filteredCards.length > 0 ? 'none' : 'flex';
+      noCoursesMessage.style.display = visibleCount > 0 ? 'none' : 'flex';
     }
 
     function handleSearch(event) {
       event && event.preventDefault();
-      currentPage = 1;
       filterCards();
-      updatePagination();
     }
 
     searchInput.addEventListener("input", handleSearch);
 
-    prevBtn.addEventListener("click", () => {
-      if (currentPage > 1) {
-        currentPage--;
-        updatePagination();
-      }
-    });
-
-    nextBtn.addEventListener("click", () => {
-      const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
-      if (currentPage < totalPages) {
-        currentPage++;
-        updatePagination();
-      }
-    });
-
     // Inicialización
     filterCards();
-    updatePagination();
   });
 </script>
 
@@ -138,21 +76,6 @@
           % endfor
           <div id="no-courses-message" class="no-courses-message">${_("No courses found.")}</div>
         </ul>
-        <div class="pagination-container">
-          <div class="pagination-buttons">
-            <button class="prevBtn" id="prev-page">
-              <img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAACq0lEQVR4nM1XyW4TQRBtaaq83EgOQeIChJ/gws6F9Sv4AeAPQAKR7c6JRQSkIC7gOK5yooEoiTjkAwgIDrkipsoyBzg1qradzbE9Y08kntTSuGemX3fNq1dl5/57bGyXC5TcQtIZIJlH1k82wjXpdFRr3HSxL+XGV6zrJJC8RNbfyPILWBeQdRZI7toI16xvkTWxZ4D1eZHk9PCMVV9E1jlk+Qus76OaXHKxh57Pxx4ikstIUrF3LDK2RjbS5eZxZFkHli+wlJzLumfg5AKQfEWWNUfNidSkwPoDSWoulmNuWFR0DFkYSL8PJg/hlfUWaZ+wpkXswcjDyRd8oedz9k0tvCOd9CAqOgYkW6b8Q++bEpHlTxBRzgBKzpvgiit65pCbljLyYdAiUb1xw216zEqOJItA+mL/7MZ22XJw0Glb6aWN9Erds2GWK0ja3GcyBU5umzn0ExSSPDZS4MZZNww2PZrJhIjtLqrT5j49SVlnkVSHJm0DSN8h61TntwOWN71UhyyP8iA1tK12fneCNAaSezsTnXmWh8jqkeUzsj7NNuTOwfWA5b5xpSF+cKTEQPI6mHqvUI8iqm6DepVeXKQzOYrryc6EFXEklX7GkEs6kUpEjWu7k7EvWXJbPU1jIGX+eSIrb1TXq10GYjA7syI+aAFrf7IXeGdaqQLrs64bxSU5FYrEgFMPg6guF0ORqOvk4btqNXJbVspyY63pOLB82yeqHo3AmhXvXBqBlqCWkXW1byMQQM0Ja1cC+Sgnr+m4kaZrfTqg5oSd3MJu38dlhOmkHd7V7CW06otmLCY4K+JWT/s2AJseWykjS+Ed+6YDw9sH1hKFVAsNvSZt95nb09DPhTlSsTy1lCmtJCddboh9yYq41VPzWyT9aCNcs05F3Lie61+Yo8I/4/g5+1QxRfMAAAAASUVORK5CYII="
-                alt="circled-right-2">
-            </button>
-            <div class="pagination"></div>
-            <button class="nextBtn" id="next-page">
-              <img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAACoklEQVR4nM1Xu24TURBdae947Y6kMAUFED6BhoY3Dc+vgA8A/gAqYmJqKh4iIAXRgLE9Y0cLkRNR5AMICIrUsDMrU0C1aK4jsLH36Y3Eka60ujt3j2fumYcd57/H1m6tgsFVQLlvkFeB5L0u+4zScLvhFcePqqXxeT1ZMshPgeQHEH83JGtAsmKQb+qyzyQvgSRQG0Py2EM+WpyxHXlA0gTiX4bktdvls44fmVh7PzIu8jlAbukZjYx+Ix9pf3gQiDcN8UfTCU7m/c2GgtMG+RMQDxwc1jOTGpKvgNx1fD7gFEVLFoCYDMqXdHIbXt4ckSaENSv8yCi59XwtqsTa6Z1qeOfy9F+0ZMEg76jyZ75XJQLxTyuikmEwOKWC89bl2IyXmjL8JvdX25Gn+Z1mBshvDcqTyd2t3ZrmYBFva/1vh4Ak1GtKsnOJzwPKcKLIVCi4psWhqKAA5bgtICgPYo22I1AbtxdeHj/Y0OrjzAFD4QlAEVs44mxQXgHJ8tghfhGruiKex4QdRqV2dfyAb5BvTRvyDSB5mG/xByCJgPjOlMfEt5UrC/H1OYjvphIb5OdJd1NiqJuG+Nn+iItkJUVc9/5saBMHFFbJ72s6obCL4cW/m35U1eTWfpqbFYf1TAWkJxemCohCy5k28dzE2xFMFIUYAHHbkDyaeuF1+IhtEkW8ToHb4zO2SfRkafavGg1yO9rKSmPtyqIh/jwhqphBYKDNu5RBYCSoPpBsJA4CFjis67hiyefxvCuLSppt9JlQKg807Ho/Tk6oTvbCu5GddDzsKA0VnDZx7aeJeW7VrSnDHXtG7zQ1vAnQkcimmh3oJdirPs2xgb5p91BY81RTproeHHZKgx9VNV+1n2q9BZR3uuwzybJL4aVS/8LsF34DOuc6Aq8U/akAAAAASUVORK5CYII="
-                alt="circled-right-2">
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   </section>

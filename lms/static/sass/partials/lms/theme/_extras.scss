@@ -14,14 +14,8 @@
   }
 }
 
-// .courses-container .courses .course {
-//     border-radius: 6%;
-//     padding: 2%;
-// }
-
 // Osano styles //
 
-// -- Banner dialog -- //
 .osano-cm-dialog {
   background: #e2e8f0 !important;
   color: #133979 !important;
@@ -138,10 +132,6 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   text-decoration: none;
 }
 
-
-
-
-
 .cc-grower {
   display: flex;
   max-height: 6rem !important;
@@ -166,13 +156,8 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   background: transparent !important;
 }
 
-// Hide important dates from course about
-.courses-container .courses .course .course-info .course-date {
-  display: none;
-}
-
-.course-info .course-sidebar .important-dates {
-  display: none;
+#course-about-info{
+   padding: 12% 5%;
 }
 
 .background-video {
@@ -282,6 +267,13 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 .home-banner.scrolled .link {
   color: #133979 !important;
   text-transform: uppercase;
+}
+
+.line-header{
+  width: 100%;
+  height: 6rem;
+  background: linear-gradient(0deg, #4e359e 0%, #1d3a66 100%);
+  position: absolute;
 }
 
 .nav-header {
@@ -698,10 +690,33 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   filter: brightness(70%)
 }
 
+.course-info header.course-profile{
+  margin-top: 3rem;
+  box-shadow: none;
+}
+
+.course-info header.course-profile .intro-inner-wrapper{
+  height: 20rem;
+}
+
 .course-info header.course-profile .intro-inner-wrapper .intro>.heading-group {
   border-bottom: none;
   box-shadow: none;
   padding: 0;
+}
+
+.heading-group p{
+  width: 60%;
+  color: #133979;
+  line-height: 1.5;
+}
+
+.heading-group h1 {
+  font-size: 3rem;
+  color: #133979 !important;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
 .course-info header.course-profile .intro-inner-wrapper .intro .main-cta a.register {
@@ -710,8 +725,8 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   width: 14rem;
   padding: 20px;
   border-radius: 20px;
-  background: white;
-  color: #133979 !important;
+  background: linear-gradient(0deg, #4e359e 0%, #1d3a66 100%);
+  color: white !important;
   text-decoration: none !important;
   text-shadow: none;
   text-transform: uppercase;
@@ -724,8 +739,9 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 }
 
 .course-info header.course-profile .intro-inner-wrapper .intro .main-cta a.register:hover:not(:disabled) {
-  background: linear-gradient(0deg, #4e359e 0%, #1d3a66 100%);
-  color: white !important;
+  background: white;
+  border: solid 1px #1d3a66 !important;
+  color: #133979 !important;
 }
 
 .intro-inner-wrapper .intro .main-cta a.register {
@@ -755,9 +771,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 .course-info header.course-profile .intro-inner-wrapper .intro {
   position: absolute;
-  padding: 3% 15%;
   width: 100%;
-  top: 18rem;
 }
 
 @media screen and (max-width: 670px) {
@@ -818,7 +832,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 .course-about-banner-title {
   font-size: 5rem;
   text-transform: uppercase;
-  color: white;
+  color: #133979 !important;
   width: 100%;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
@@ -827,11 +841,13 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   max-height: calc(97px* 4);
 }
 
-.course-info header.course-profile .intro-inner-wrapper .media .hero img {
-  width: 406px;
-  height: 162px;
+.course-info header.course-profile .intro-inner-wrapper .media {
+  padding: 0 !important;
 }
 
+.course-info header.course-profile .intro-inner-wrapper .media .hero {
+  border: none !important;
+}
 .course-info header.course-profile {
   border-bottom: none;
 }
@@ -851,6 +867,11 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   font-size: 40px;
   text-transform: uppercase;
   color: #133979;
+}
+
+.courses-container .courses{
+  margin-bottom: 3rem !important;
+  margin-top: 1rem !important;
 }
 
 @media (max-height: 800px) {
@@ -899,6 +920,44 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
   .course-info header.course-profile .intro-inner-wrapper .intro {
       top: 2rem;
+  }
+}
+
+// Ajuste para course-about en responsive
+@media screen and (max-width: 900px) {
+  .course-info header.course-profile .intro-inner-wrapper {
+      display: flex;
+      flex-direction: column !important;
+      height: auto;
+      position: static;
+  }
+  .course-info header.course-profile .intro-inner-wrapper .table {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  }
+  .course-info header.course-profile .intro-inner-wrapper .intro {
+      position: static;
+      width: 100%;
+      padding: 1rem 0;
+      top: auto;
+      left: auto;
+      background: none;
+      z-index: auto;
+  }
+  .course-info header.course-profile .intro-inner-wrapper .media {
+      position: static;
+      width: 100%;
+      margin-bottom: 1.5rem;
+  }
+  .course-info header.course-profile .intro-inner-wrapper .media .hero img {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+  }
+  .heading-group p {
+      width: 100%;
   }
 }
 
@@ -1069,7 +1128,6 @@ li {
   .view-profile .wrapper-profile-sections,
   .view-profile .badge-set-display {
       margin: 0 auto;
-      padding: 40px;
       max-width: 1180px;
       min-width: 760px;
       width: 100%;
