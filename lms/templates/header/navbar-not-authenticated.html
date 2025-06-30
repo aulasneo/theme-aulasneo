@@ -40,7 +40,7 @@ from openedx.core.djangoapps.user_authn.toggles import should_redirect_to_authn_
       const banner = document.querySelector('.home-banner');
       const logoImg = document.getElementById('logo-img');
   
-      const paginasConScrolled = ['/courses', '/cookies', '/privacy', '/tos', '/about'];
+      const paginasConScrolled = ['/cookies', '/privacy', '/tos', '/about'];
   
       function cambiarLogoBlanco() {
         logoImg.src = "${static.url('images/logo-white.png')}";
@@ -79,6 +79,16 @@ from openedx.core.djangoapps.user_authn.toggles import should_redirect_to_authn_
   
       aplicarEstiloSignIn();
     });
+
+
+  // Ocultar menú al salir con el mouse
+  document.addEventListener('DOMContentLoaded', function () {
+      const navHeader = document.querySelector('.nav-header');
+      navHeader.addEventListener('mouseleave', function () {
+          navHeader.classList.remove('show');
+          removeUserLinks();
+      });
+  });
   
     function aplicarEstiloSignIn() {
       const signInLink = document.querySelector('.nav-header .link[href$="/login"]');

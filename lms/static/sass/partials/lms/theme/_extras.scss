@@ -156,8 +156,8 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   background: transparent !important;
 }
 
-#course-about-info{
-   padding: 12% 5%;
+#course-about-info {
+  padding: 12% 5%;
 }
 
 .background-video {
@@ -237,11 +237,12 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 .link-menu {
   color: #133979 !important;
-  font-size: 12px !important;
+  font-size: 1rem !important;
   text-decoration: none !important;
   transition: color 0.3s ease !important;
   text-transform: uppercase !important;
   text-align: end;
+  font-weight: 600;
 }
 
 /* HOME */
@@ -269,7 +270,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   text-transform: uppercase;
 }
 
-.line-header{
+.line-header {
   width: 100%;
   height: 6rem;
   background: linear-gradient(0deg, #4e359e 0%, #1d3a66 100%);
@@ -527,18 +528,6 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   color: #133979;
 }
 
-.arrow-scroll {
-  margin-top: 1rem;
-}
-
-.about-footer-section:hover .arrow-scroll path {
-  stroke: #05baf0;
-}
-
-.banner-footer-section:hover .arrow-scroll path {
-  stroke: #05baf0;
-}
-
 .banner-footer-title {
   color: #133979;
   text-transform: uppercase;
@@ -552,12 +541,6 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   font-size: 1rem;
   line-height: 1.5;
   color: #133979;
-}
-
-.line {
-  background-color: #05baf0;
-  width: 2px;
-  height: auto;
 }
 
 #discovery-courses {
@@ -592,12 +575,6 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
       width: 100%;
   }
 
-  .line {
-      height: 1px;
-      width: 80%;
-      margin: 10px;
-  }
-
   .banner-footer-section {
       width: 100%;
       justify-content: center;
@@ -612,26 +589,13 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
       margin: 30px 20px 30px 20px;
   }
 
-  .levels-footer {
-      flex-direction: column;
-  }
-
-  #testimonies,
-  #certification,
   .filters-discover {
       margin: 20px !important;
   }
 
-  .experts-content {
-      padding: 20px !important;
-      align-items: center !important;
-      height: 53vh;
-  }
-
   .filters-discovery,
   .titles-sections,
-  .filters-discover,
-  .titles-sections-testimonies {
+  .filters-discover {
       font-size: 2rem !important;
       text-align: center;
   }
@@ -691,13 +655,13 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   filter: brightness(70%)
 }
 
-.course-info header.course-profile{
+.course-info header.course-profile {
   margin-top: 3rem;
   box-shadow: none;
 }
 
-.course-info header.course-profile .intro-inner-wrapper{
-  height: 20rem;
+.course-info header.course-profile .intro-inner-wrapper {
+  height: 21rem;
 }
 
 .course-info header.course-profile .intro-inner-wrapper .intro>.heading-group {
@@ -706,7 +670,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   padding: 0;
 }
 
-.heading-group p{
+.heading-group p {
   width: 60%;
   color: #133979;
   line-height: 1.5;
@@ -718,6 +682,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   text-transform: uppercase;
   margin-bottom: 0.5rem;
   font-weight: 500;
+  width: 68%;
 }
 
 .course-info header.course-profile .intro-inner-wrapper .intro .main-cta a.register {
@@ -849,6 +814,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 .course-info header.course-profile .intro-inner-wrapper .media .hero {
   border: none !important;
 }
+
 .course-info header.course-profile {
   border-bottom: none;
 }
@@ -870,7 +836,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   color: #133979;
 }
 
-.courses-container .courses{
+.courses-container .courses {
   margin-bottom: 3rem !important;
   margin-top: 1rem !important;
 }
@@ -932,11 +898,13 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
       height: auto;
       position: static;
   }
+
   .course-info header.course-profile .intro-inner-wrapper .table {
       display: flex;
       flex-direction: column;
       width: 100%;
   }
+
   .course-info header.course-profile .intro-inner-wrapper .intro {
       position: static;
       width: 100%;
@@ -946,17 +914,20 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
       background: none;
       z-index: auto;
   }
+
   .course-info header.course-profile .intro-inner-wrapper .media {
       position: static;
       width: 100%;
       margin-bottom: 1.5rem;
   }
+
   .course-info header.course-profile .intro-inner-wrapper .media .hero img {
       width: 100%;
       height: auto;
       max-width: 100%;
       object-fit: contain;
   }
+
   .heading-group p {
       width: 100%;
   }
@@ -1475,54 +1446,6 @@ button:focus:not(:disabled),
   }
 }
 
-// Pagination //
-.pagination-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  margin-top: 2rem;
-}
-
-.pagination {
-  display: inline-block;
-  width: auto;
-}
-
-.pagination-buttons {
-  display: flex;
-  width: 250px;
-  height: 30px;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-  position: relative;
-  background-color: transparent;
-}
-
-.pagination-btn {
-  background: transparent;
-  border-radius: 50%;
-  box-shadow: none;
-  color: #133979;
-  font-size: 16px;
-  padding: 5px 9px 0px 9px;
-  border: none;
-  cursor: pointer;
-  margin: 0px 5px;
-}
-
-.pagination-btn:hover,
-.pagination-btn:hover:not(:disabled) {
-  background: transparent;
-}
-
-.pagination-btn.active {
-  border: 1px solid;
-  border-radius: 0;
-}
-
 // Footer //
 .wrapper-footer footer#footer-openedx .copyright {
   display: none;
@@ -1665,7 +1588,6 @@ button:focus:not(:disabled),
   line-height: normal;
   font-size: 0.8rem;
 }
-
 
 @media screen and (max-width: 930px) {
   .container-logos-footer {
