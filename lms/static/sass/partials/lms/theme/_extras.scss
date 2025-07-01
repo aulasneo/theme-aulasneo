@@ -210,6 +210,25 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   text-decoration: none;
 }
 
+.menu-title a {
+  color: white !important;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+// Hover en mobile (menú abierto): fondo gris, sin subrayado
+@media (max-width: 768px) {
+  .link-menu:hover {
+      text-decoration: none;
+      background: #eeeeeeb5;
+      width: -webkit-fill-available;
+      text-align: end;
+  }
+}
+
 .dropdown-user-menu {
   background: white;
   position: absolute;
@@ -221,13 +240,50 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   margin: 0%;
   box-shadow: 0px 0px 9px 4px rgba(0, 0, 0, 0.15);
   text-align: end;
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
 }
 
-.mobile-nav-item .dropdown-item .dropdown-nav-item {
+@media (max-width: 768px) {
+  .dropdown-user-menu {
+      background: #fff;
+      position: absolute;
+      top: 102%;
+      right: 15%;
+      width: auto;
+      padding: 5px;
+      align-items: flex-end;
+      margin: 0%;
+      box-shadow: 0px 0px 9px 4px rgba(0, 0, 0, 0.15);
+      text-align: end;
+      display: flex;
+      flex-direction: column;
+      z-index: 1001;
+  }
+
+  .dropdown-user-menu .link-menu {
+      color: #133979 !important;
+      font-size: 1rem !important;
+      text-decoration: none !important;
+      text-transform: uppercase !important;
+      text-align: end;
+      padding: 10px 0;
+      width: 100%;
+      transition: background 0.3s;
+  }
+
+  .dropdown-user-menu .link-menu:hover {
+      background: #eeeeeeb5;
+  }
+}
+
+.dropdown-nav-item {
   color: #133979;
   font-size: 12px;
   text-decoration: none;
   transition: color 0.3s ease;
+  padding: 12px !important;
 }
 
 .user-image-frame {
@@ -242,7 +298,14 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   transition: color 0.3s ease !important;
   text-transform: uppercase !important;
   text-align: end;
-  font-weight: 600;
+  font-weight: 600 !important;
+}
+
+.dropdown-nav-item:hover {
+  text-decoration: none;
+  background: #eeeeeeb5;
+  width: -webkit-fill-available;
+  text-align: end;
 }
 
 /* HOME */
@@ -296,12 +359,33 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   font-weight: 600;
 }
 
+.nav-header .link:hover {
+  text-decoration: none;
+  background: none;
+}
+
+@media (max-width: 768px) {
+  .nav-header.show .link:hover {
+      text-decoration: none;
+      background: #eeeeeeb5;
+      width: -webkit-fill-available;
+      text-align: end;
+  }
+}
+
 .nav-header .show .link {
   color: #133979 !important;
 }
 
 .nav-header .link:hover {
   text-decoration: none;
+}
+
+.nav-header .show .link:hover {
+  text-decoration: none;
+  background: #eeeeeeb5;
+  width: -webkit-fill-available;
+  text-align: end;
 }
 
 .menu-toggle {
@@ -314,7 +398,6 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 .SignIn {
   color: white !important;
-  border-radius: 12px;
   font-size: 1rem !important;
   text-decoration: none !important;
   transition: color 0.3s ease !important;
@@ -661,7 +744,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 }
 
 .course-info header.course-profile .intro-inner-wrapper {
-  height: 21rem;
+  height: 23rem;
 }
 
 .course-info header.course-profile .intro-inner-wrapper .intro>.heading-group {
@@ -674,6 +757,8 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   width: 60%;
   color: #133979;
   line-height: 1.5;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .heading-group h1 {
@@ -765,7 +850,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   text-shadow: none;
   text-transform: uppercase;
   text-align: center;
-  border: none;
+  border: 1px solid;
   display: flex;
   align-items: center;
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -783,16 +868,24 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   text-shadow: none;
   text-transform: uppercase;
   text-align: center;
-  border: none;
+  border: 1px solid;
   display: flex;
   align-items: center;
   transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
   box-shadow: none;
+  margin: 1px 3.57866% 1rem 0;
+}
+
+.course-info header.course-profile .intro-inner-wrapper .intro .main-cta span.register:hover:not(:disabled) {
+  background: linear-gradient(0deg, #4e359e 0%, #1d3a66 100%);
+  color: white !important;
+  border: 1px solid;
 }
 
 .course-info header.course-profile .intro-inner-wrapper .intro .main-cta strong:hover:not(:disabled) {
   background: linear-gradient(0deg, #4e359e 0%, #1d3a66 100%);
   color: white !important;
+  border: 1px solid;
 }
 
 .course-about-banner-title {
@@ -1057,11 +1150,6 @@ li {
       display: flex;
       flex-direction: column;
       width: 100%;
-  }
-
-  .course-info header.course-profile .intro-inner-wrapper .intro .main-cta strong {
-      width: 100%;
-      margin-top: 20px;
   }
 
   .about-footer-section {
