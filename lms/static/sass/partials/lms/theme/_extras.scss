@@ -4,13 +4,13 @@
   justify-content: center;
 
   .courses-listing-item {
-      margin: 0 20px 30px 20px;
+    margin: 0 20px 30px 20px;
 
-      // Fix right margin
-      &:nth-child(4n),
-      &:last-child {
-          margin-right: 20px;
-      }
+    // Fix right margin
+    &:nth-child(4n),
+    &:last-child {
+      margin-right: 20px;
+    }
   }
 }
 
@@ -197,6 +197,18 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   display: none;
 }
 
+.global-header .main-header {
+  height: 115px;
+  position: relative;
+}
+
+@media (max-width: 991.98px) {
+  .global-header .main-header {
+      height: 115px;
+      position: relative;
+  }
+}
+
 .secondary-header {
   display: flex;
   align-items: center;
@@ -222,10 +234,10 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 // Hover en mobile (menú abierto): fondo gris, sin subrayado
 @media (max-width: 768px) {
   .link-menu:hover {
-      text-decoration: none;
-      background: #eeeeeeb5;
-      width: -webkit-fill-available;
-      text-align: end;
+    text-decoration: none;
+    background: #eeeeeeb5;
+    width: -webkit-fill-available;
+    text-align: end;
   }
 }
 
@@ -247,34 +259,34 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 @media (max-width: 768px) {
   .dropdown-user-menu {
-      background: #fff;
-      position: absolute;
-      top: 102%;
-      right: 15%;
-      width: auto;
-      padding: 5px;
-      align-items: flex-end;
-      margin: 0%;
-      box-shadow: 0px 0px 9px 4px rgba(0, 0, 0, 0.15);
-      text-align: end;
-      display: flex;
-      flex-direction: column;
-      z-index: 1001;
+    background: #fff;
+    position: absolute;
+    top: 102%;
+    right: 15%;
+    width: auto;
+    padding: 5px;
+    align-items: flex-end;
+    margin: 0%;
+    box-shadow: 0px 0px 9px 4px rgba(0, 0, 0, 0.15);
+    text-align: end;
+    display: flex;
+    flex-direction: column;
+    z-index: 1001;
   }
 
   .dropdown-user-menu .link-menu {
-      color: #133979 !important;
-      font-size: 1rem !important;
-      text-decoration: none !important;
-      text-transform: uppercase !important;
-      text-align: end;
-      padding: 10px 0;
-      width: 100%;
-      transition: background 0.3s;
+    color: #133979 !important;
+    font-size: 1rem !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    text-align: end;
+    padding: 10px 0;
+    width: 100%;
+    transition: background 0.3s;
   }
 
   .dropdown-user-menu .link-menu:hover {
-      background: #eeeeeeb5;
+    background: #eeeeeeb5;
   }
 }
 
@@ -312,7 +324,9 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 .home-banner {
   position: fixed;
-  top: 0;
+  top: 0px;
+  /* Fijar altura consistente para evitar variaciones por viewport */
+  height: 80px;
   width: -webkit-fill-available;
   background: transparent;
   transition: background 1s ease, color 1s ease;
@@ -335,10 +349,20 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 .line-header {
   width: 100%;
-  height: 6rem;
+  /* Igualar con altura fija del header */
+  height: 110px;
   background: linear-gradient(0deg, #4e359e 0%, #1d3a66 100%);
   position: absolute;
   top: 0;
+  /* Debajo del header y sin bloquear clics */
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  .line-header {
+    height: 93px;
+  }
 }
 
 .nav-header {
@@ -366,10 +390,10 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 @media (max-width: 768px) {
   .nav-header.show .link:hover {
-      text-decoration: none;
-      background: #eeeeeeb5;
-      width: -webkit-fill-available;
-      text-align: end;
+    text-decoration: none;
+    background: #eeeeeeb5;
+    width: -webkit-fill-available;
+    text-align: end;
   }
 }
 
@@ -408,48 +432,75 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 /* Estilos responsive */
 @media screen and (max-width: 768px) {
   .nav-header {
-      display: none;
-      flex-direction: column;
-      align-items: flex-end;
-      background: #fff;
-      position: absolute;
-      top: 102%;
-      right: 15%;
-      width: auto;
-      padding: 5px;
-      align-items: flex-end;
-      margin: 0%;
-      box-shadow: 0px 0px 9px 4px rgba(0, 0, 0, 0.15);
-      gap: 0;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    background: #fff;
+    position: absolute;
+    top: 102%;
+    right: 15%;
+    width: auto;
+    padding: 5px;
+    align-items: flex-end;
+    margin: 0%;
+    box-shadow: 0px 0px 9px 4px rgba(0, 0, 0, 0.15);
+    gap: 0;
   }
 
   .nav-header a {
-      color: white;
-      text-decoration: none;
-      padding: 10px;
-      display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
   }
 
   .menu-toggle {
-      display: block;
-      position: absolute;
-      left: 80%;
-      box-shadow: none !important;
-      margin: 0;
-      padding: 5px 0 0 0;
+    display: block;
+    position: absolute;
+    left: 80%;
+    box-shadow: none !important;
+    margin: 0;
+    padding: 5px 0 0 0;
   }
 
   .menu-toggle:hover {
-      background: transparent !important;
+    background: transparent !important;
   }
 
   .nav-header.show {
-      display: flex;
+    display: flex;
   }
 
   .SignIn {
-      background: transparent;
+    background: transparent;
   }
+}
+
+/* Ajuste global: evitar que el contenido quede tapado por el header fijo
+   Solo aplicar en páginas que no son home */
+body:not(.home) .content-wrapper {
+  margin-top: 115px;
+}
+
+/* Aplicar también a plantillas que usan #main en lugar de .content-wrapper */
+body:not(.home) #main {
+  margin-top: 115px;
+}
+
+/* Altura de header y compensación en mobile */
+@media screen and (max-width: 768px) {
+  .home-banner {
+    height: 64px;
+  }
+  body:not(.home) .content-wrapper {
+    margin-top: 80px;
+  }
+
+  body:not(.home) #main {
+    margin-top: 80px;
+  }
+
+ 
 }
 
 //
@@ -496,17 +547,17 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 @media (max-width: 991.98px) {
   .hidden-mobile:not(.mobile-nav-link) {
-      display: block;
+    display: block;
   }
 }
 
 @media screen and (max-width: 768px) {
   .hidden-mobile:not(.mobile-nav-link) {
-      display: none;
+    display: none;
   }
 
   .logo-1 {
-      width: 15rem;
+    width: 15rem;
   }
 }
 
@@ -634,72 +685,72 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 @media screen and (max-width: 1580px) {
   .home-banner-title {
-      font-size: 3rem;
+    font-size: 3rem;
   }
 }
 
 @media screen and (max-width: 990px) {
 
   .home>header .home-banner-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      margin-bottom: 0;
-      padding-top: 4rem;
-      margin: 2rem;
-      top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 0;
+    padding-top: 4rem;
+    margin: 2rem;
+    top: 10%;
   }
 
   .home-banner {
-      padding: 15px 2rem;
+    padding: 15px 2rem;
   }
 
   .home-banner-description {
-      width: 100%;
+    width: 100%;
   }
 
   .banner-footer-section {
-      width: 100%;
-      justify-content: center;
-      padding-right: 0;
-      padding-left: 0;
+    width: 100%;
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 0;
   }
 
   .banner-footer {
-      flex-direction: column;
-      align-items: center;
-      margin: 2%;
-      margin: 30px 20px 30px 20px;
+    flex-direction: column;
+    align-items: center;
+    margin: 2%;
+    margin: 30px 20px 30px 20px;
   }
 
   .filters-discover {
-      margin: 20px !important;
+    margin: 20px !important;
   }
 
   .filters-discovery,
   .titles-sections,
   .filters-discover {
-      font-size: 2rem !important;
-      text-align: center;
+    font-size: 2rem !important;
+    text-align: center;
   }
 
 }
 
 @media screen and (max-width: 670px) {
   .enroll-button {
-      font-size: 12px !important;
+    font-size: 12px !important;
   }
 
   .sign-in-button,
   .sign-in-button:not(.btn),
   .sign-in-button:visited:not(.btn) {
-      font-size: 12px !important;
+    font-size: 12px !important;
   }
 }
 
 @media screen and (max-width: 460px) {
   .home-banner-title {
-      font-size: 2.5rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -827,13 +878,13 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 @media screen and (max-width: 670px) {
   .course-info header.course-profile .intro-inner-wrapper .intro {
-      padding: 0% 10%;
+    padding: 0% 10%;
   }
 }
 
 @media screen and (max-width: 880px) {
   .course-info header.course-profile .intro-inner-wrapper .intro {
-      top: 30%;
+    top: 30%;
   }
 }
 
@@ -936,93 +987,93 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 
 @media (max-height: 800px) {
   .course-about-banner-title {
-      font-size: 4rem;
-      margin-top: 0;
+    font-size: 4rem;
+    margin-top: 0;
   }
 
   .course-info header.course-profile .intro-inner-wrapper .intro {
-      top: 12rem;
+    top: 12rem;
   }
 
   .home>header .home-banner-info {
-      top: 33%
+    top: 33%
   }
 
   .home-banner-title {
-      font-size: 3rem;
+    font-size: 3rem;
   }
 }
 
 @media (max-height: 600px) {
   .course-about-banner-title {
-      font-size: 3rem;
-      margin-top: 0;
+    font-size: 3rem;
+    margin-top: 0;
   }
 
   .course-info header.course-profile .intro-inner-wrapper .intro {
-      top: 5rem;
+    top: 5rem;
   }
 
   .home>header .home-banner-info {
-      top: 25%
+    top: 25%
   }
 
   .home-banner-title {
-      font-size: 2rem;
+    font-size: 2rem;
   }
 }
 
 @media (max-height: 400px) {
   .course-about-banner-title {
-      font-size: 2rem;
-      margin-top: 0;
+    font-size: 2rem;
+    margin-top: 0;
   }
 
   .course-info header.course-profile .intro-inner-wrapper .intro {
-      top: 2rem;
+    top: 2rem;
   }
 }
 
 // Ajuste para course-about en responsive
 @media screen and (max-width: 900px) {
   .course-info header.course-profile .intro-inner-wrapper {
-      display: flex;
-      flex-direction: column !important;
-      height: auto;
-      position: static;
+    display: flex;
+    flex-direction: column !important;
+    height: auto;
+    position: static;
   }
 
   .course-info header.course-profile .intro-inner-wrapper .table {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .course-info header.course-profile .intro-inner-wrapper .intro {
-      position: static;
-      width: 100%;
-      padding: 1rem 0;
-      top: auto;
-      left: auto;
-      background: none;
-      z-index: auto;
+    position: static;
+    width: 100%;
+    padding: 1rem 0;
+    top: auto;
+    left: auto;
+    background: none;
+    z-index: auto;
   }
 
   .course-info header.course-profile .intro-inner-wrapper .media {
-      position: static;
-      width: 100%;
-      margin-bottom: 1.5rem;
+    position: static;
+    width: 100%;
+    margin-bottom: 1.5rem;
   }
 
   .course-info header.course-profile .intro-inner-wrapper .media .hero img {
-      width: 100%;
-      height: auto;
-      max-width: 100%;
-      object-fit: contain;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
   }
 
   .heading-group p {
-      width: 100%;
+    width: 100%;
   }
 }
 
@@ -1139,44 +1190,44 @@ li {
 
 @media screen and (max-width: 990px) {
   .background-video {
-      height: 100%;
+    height: 100%;
   }
 
   .course-about-image {
-      margin-left: 0;
+    margin-left: 0;
   }
 
   .course-info header.course-profile .intro-inner-wrapper .intro .main-cta {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .about-footer-section {
-      width: 100%;
-      justify-content: center;
-      padding-right: 0;
-      padding-left: 0;
+    width: 100%;
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 0;
   }
 
   .about-footer {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
 @media screen and (max-width: 700px) {
   .course-about-banner-title {
-      font-size: 3rem;
+    font-size: 3rem;
   }
 }
 
 @media (max-width: 768px) {
   .course-info .details {
-      margin-right: 2%;
-      width: 100%;
-      margin-left: 2%;
-      text-align: center;
+    margin-right: 2%;
+    width: 100%;
+    margin-left: 2%;
+    text-align: center;
   }
 }
 
@@ -1187,27 +1238,27 @@ li {
   .view-profile .profile-self .wrapper-profile-field-account-privacy .u-field-account_privacy,
   .view-profile .wrapper-profile-sections,
   .view-profile .badge-set-display {
-      margin: 0 auto;
-      max-width: 1180px;
-      min-width: 760px;
-      width: 100%;
+    margin: 0 auto;
+    max-width: 1180px;
+    min-width: 760px;
+    width: 100%;
   }
 }
 
 @media (max-width: 360px) {
   .home>header .home-banner-info {
-      height: 48vh;
+    height: 48vh;
   }
 }
 
 @media (max-width: 375px) {
   .home>header {
-      height: auto;
+    height: auto;
   }
 
   .buttons-container {
-      margin-top: 15px;
-      margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 }
 
@@ -1218,6 +1269,7 @@ li {
   margin: 0;
   background: white;
   padding: 0;
+  margin-top: 115px;
 }
 
 // Filters Select
@@ -1258,17 +1310,17 @@ li {
 @media (max-width: 620px) {
 
   .filter-section {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .filter-section-discovery {
-      flex-direction: column !important;
+    flex-direction: column !important;
   }
 
   .courses-container,
   .filters-discovery,
   .filter-section {
-      margin: 0 6%
+    margin: 0 6%
   }
 }
 
@@ -1494,43 +1546,43 @@ button:focus:not(:disabled),
 
 @media (max-width: 1440px) {
   .courses-listing {
-      margin: 0 7% !important;
+    margin: 0 7% !important;
   }
 
   .courses-listing-item {
-      float: left;
-      display: block;
-      margin: 0% 1% 1% 1% !important;
-      width: 25%;
+    float: left;
+    display: block;
+    margin: 0% 1% 1% 1% !important;
+    width: 25%;
   }
 }
 
 @media screen and (min-width: 769px) and (max-width: 979px) {
 
   .courses-listing {
-      margin: 0 !important;
+    margin: 0 !important;
 
   }
 
   .courses-listing-item {
-      width: 33%;
+    width: 33%;
   }
 }
 
 @media screen and (min-width: 541px) and (max-width: 768px) {
 
   .courses-listing {
-      margin: 0 !important;
+    margin: 0 !important;
   }
 
   .courses-listing-item {
-      width: 70%;
+    width: 70%;
   }
 }
 
 @media screen and (max-width: 620px) {
   .courses-listing-item {
-      width: 90%;
+    width: 90%;
   }
 }
 
@@ -1679,41 +1731,41 @@ button:focus:not(:disabled),
 
 @media screen and (max-width: 930px) {
   .container-logos-footer {
-      display: flex;
-      justify-content: space-around;
-      flex-direction: column;
-      text-align: center;
-      gap: 1rem;
-      align-items: center;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    align-items: center;
   }
 
   .colophon-right {
-      gap: 2rem;
-      width: auto;
+    gap: 2rem;
+    width: auto;
   }
 
   nav.legal ul {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   nav.legal li {
-      flex: 0 1 auto;
-      width: auto;
-      order: 1;
+    flex: 0 1 auto;
+    width: auto;
+    order: 1;
   }
 
   nav.legal li.copyright-item {
-      order: 2;
-      width: 100%;
-      margin-top: 1rem;
-      justify-content: center;
+    order: 2;
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: center;
   }
 
   .nav-colophon a,
   .social-icons-link {
-      justify-content: center;
+    justify-content: center;
   }
 }
 
