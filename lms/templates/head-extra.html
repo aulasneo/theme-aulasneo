@@ -1,8 +1,20 @@
 <!-- scrip osano -->
 <script src="https://cmp.osano.com/16BV8IUQWG83n1Pno/bc323b34-5a83-403b-8b67-643fe9d806e7/osano.js"></script>
 
-{% load waffle_tags %}
 <!-- scrip owly -->
-{% flag "owly_chat.enable" %}
-<script type="text/javascript" async src="https://chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js"></script>
-{% endflag %}
+<%page expression_filter="h"/>
+<%!
+    from waffle import flag_is_active
+%>
+% if flag_is_active(request, 'owly_chat.enable'):
+    <script>
+      window.OWLY_FLAG = true;
+      console.log('owly_chat.enable =', window.OWLY_FLAG);
+    </script>
+    <script type="text/javascript" async src="https://chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js"></script>
+% else:
+    <script>
+      window.OWLY_FLAG = false;
+      console.log('owly_chat.enable =', window.OWLY_FLAG);
+    </script>
+% endif
