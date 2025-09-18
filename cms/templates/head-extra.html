@@ -1,7 +1,7 @@
-<!-- scrip osano -->
-<script src="https://cmp.osano.com/16BV8IUQWG83n1Pno/bc323b34-5a83-403b-8b67-643fe9d806e7/osano.js"></script>
+<!-- scrip osano (optional on CMS; include if needed) -->
+<!-- <script src="https://cmp.osano.com/16BV8IUQWG83n1Pno/bc323b34-5a83-403b-8b67-643fe9d806e7/osano.js"></script> -->
 
-<!-- scrip owly -->
+<!-- script owly for CMS -->
 <%page expression_filter="h"/>
 <%!
 from waffle.models import Flag
@@ -16,10 +16,8 @@ def is_owly_chat_enabled_for_user(user_email=None, request_user=None):
     Check if owly_chat is enabled for a specific user using Flag.is_active_for_user
     """
     try:
-        # Get the flag
         flag = Flag.objects.get(name='owly_chat.enable')
-        
-        # Determine target user
+
         target_user = request_user
         if user_email and user_email != "null":
             try:
@@ -31,18 +29,14 @@ def is_owly_chat_enabled_for_user(user_email=None, request_user=None):
             except Exception as e:
                 logger.error(f"Error finding user {user_email}: {e}")
                 return False
-        
-        # Check if user exists and use flag.is_active_for_user
-        if target_user and target_user.is_authenticated:
-            # Check superuser first (if flag allows it)
-            if flag.superusers and target_user.is_superuser:
+
+        if target_user and getattr(target_user, 'is_authenticated', False):
+            if flag.superusers and getattr(target_user, 'is_superuser', False):
                 return True
-            
-            # Use the flag's is_active_for_user method
             return flag.is_active_for_user(target_user)
-        
+
         return False
-        
+
     except Flag.DoesNotExist:
         logger.error("Flag 'owly_chat.enable' does not exist!")
         return False
@@ -52,13 +46,11 @@ def is_owly_chat_enabled_for_user(user_email=None, request_user=None):
 %>
 
 <%
-    # Preparar datos mínimos del usuario para el cliente, evitando PII sensible
     try:
         _is_auth = bool(user.is_authenticated)
         _username = user.username if _is_auth else None
         _email = user.email if _is_auth else None
-        
-        # Check owly chat flag for current user
+
         _owly_enabled = is_owly_chat_enabled_for_user(
             user_email=_email,
             request_user=user
@@ -73,13 +65,13 @@ def is_owly_chat_enabled_for_user(user_email=None, request_user=None):
 % if _owly_enabled:
     <script>
       window.OWLY_FLAG = true;
-      console.log('owly_chat.enable =', window.OWLY_FLAG);
+      console.log('CMS owly_chat.enable =', window.OWLY_FLAG);
     </script>
     <script type="text/javascript" async data-owly-embed="true" src="https://chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js"></script>
 % else:
     <script>
       window.OWLY_FLAG = false;
-      console.log('owly_chat.enable =', window.OWLY_FLAG);
+      console.log('CMS owly_chat.enable =', window.OWLY_FLAG);
     </script>
 % endif
 
@@ -89,5 +81,5 @@ def is_owly_chat_enabled_for_user(user_email=None, request_user=None):
       "username": _username,
       "email": _email,
   }) | n };
-  console.log('CURRENT_USER =', window.CURRENT_USER);
+  console.log('CMS CURRENT_USER =', window.CURRENT_USER);
 </script>
