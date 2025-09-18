@@ -67,7 +67,24 @@ def is_owly_chat_enabled_for_user(user_email=None, request_user=None):
       window.OWLY_FLAG = true;
       console.log('CMS owly_chat.enable =', window.OWLY_FLAG);
     </script>
-    <script type="text/javascript" async data-owly-embed="true" src="https://chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js"></script>
+    <script>
+      (function () {
+        try {
+          // Only in top-level window, never in iframes
+          if (typeof window !== 'undefined' && window.self !== window.top) { return; }
+          if (typeof document === 'undefined') { return; }
+          // Avoid duplicate injection if OwlyLoader or theme already added it
+          var existing = document.querySelector('script[data-owly-embed="true"], script[src*="chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js"]');
+          if (existing) { return; }
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = 'https://chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js';
+          s.setAttribute('data-owly-embed', 'true');
+          (document.head || document.body || document.documentElement).appendChild(s);
+        } catch (e) { /* silent */ }
+      })();
+    </script>
 % else:
     <script>
       window.OWLY_FLAG = false;
