@@ -121,52 +121,18 @@ import json
       try { console.log('CMS CURRENT_USER =', window.CURRENT_USER); } catch (_) {}
     </script>
 
-    <script>
-      // Inicializar el flag como falso por defecto
-      window.OWLY_FLAG = false;
-      
-      // Verificar permisos del usuario mediante el endpoint seguro
-      (function() {
-        try {
-          // Solo en ventana principal, no en iframes
-          if (typeof window !== 'undefined' && window.self !== window.top) { return; }
-          if (typeof document === 'undefined') { return; }
-          
-          // Evitar inyección duplicada
-          var existing = document.querySelector('script[data-owly-embed="true"], script[src*="chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js"]');
-          if (existing) { return; }
-          
-          // Verificar permisos del usuario
-          fetch('/api/v1/owly-config/enable_owly_chat/', { 
-            credentials: 'include',
-            headers: {
-              'Accept': 'application/json',
-              'X-Requested-With': 'XMLHttpRequest'
-            }
-          })
-          .then(function(res) { 
-            if (!res.ok) throw new Error('HTTP ' + res.status); 
-            return res.json().catch(function(){return {};}); 
-          })
-          .then(function(data) {
-            if (data?.enabled === true && data?.user_has_permission === true) {
-              window.OWLY_FLAG = true;
-              var s = document.createElement('script');
-              s.type = 'text/javascript';
-              s.async = true;
-              s.src = 'https://chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js';
-              s.setAttribute('data-owly-embed', 'true');
-              (document.head || document.body || document.documentElement).appendChild(s);
-            }
-          })
-          .catch(function(error) {
-            console.error('Error verificando permisos de Owly:', error);
-          });
-        } catch (e) {
-          console.error('Error en la inicialización de Owly:', e);
-        }
-      })();
-    </script>
+    % if flag_is_active(request, 'owly_chat.enable'):
+      <script>
+        window.OWLY_FLAG = true;
+        try { console.log('owly_chat.enable (CMS) =', window.OWLY_FLAG); } catch (_) {}
+      </script>
+      <script type="text/javascript" async src="https://chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js"></script>
+    % else:
+      <script>
+        window.OWLY_FLAG = false;
+        try { console.log('owly_chat.enable (CMS) =', window.OWLY_FLAG); } catch (_) {}
+      </script>
+    % endif
   </head>
 
   <body class="${static.dir_rtl()} <%block name='bodyclass'></%block> lang_${LANGUAGE_CODE}">

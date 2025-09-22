@@ -15,34 +15,22 @@
 
       // Client-side flag check as a fallback for plain HTML pages
       var url = new URL('/api/v1/owly-config/enable_owly_chat/', window.location.origin);
-      fetch(url.toString(), { 
-        credentials: 'include',
-        headers: {
-          'Accept': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-      })
-      .then(function (res) { 
-        if (!res.ok) throw new Error('HTTP ' + res.status); 
-        return res.json().catch(function(){return {};}); 
-      })
-      .then(function (data) {
-        if (data?.enabled === true && data?.user_has_permission === true) {
-          window.OWLY_FLAG = true;
-          try { 
+      fetch(url.toString(), { credentials: 'include' })
+        .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json().catch(function(){return {};}); })
+        .then(function (data) {
+          if (data && data.enabled === true) {
+            window.OWLY_FLAG = true;
+            try { console.log('owly_chat.enable =', window.OWLY_FLAG); } catch (_) {}
             var s = document.createElement('script');
             s.type = 'text/javascript';
             s.async = true;
             s.src = 'https://chat.owly-dev.aulasneo.link/owly-chatbot-embed.min.js';
             s.setAttribute('data-owly-embed', 'true');
             (document.head || document.body || document.documentElement).appendChild(s);
-          } catch (e) {
-            console.error('Error loading Owly chat:', e);
+          } else {
             window.OWLY_FLAG = false;
+            try { console.log('owly_chat.enable =', window.OWLY_FLAG); } catch (_) {}
           }
-        } else {
-          window.OWLY_FLAG = false;
-        }
         })
         .catch(function () { /* silent: no injection on error */ });
     } catch (e) { /* silent */ }
