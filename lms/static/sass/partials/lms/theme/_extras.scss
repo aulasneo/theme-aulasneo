@@ -157,7 +157,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
 }
 
 #course-about-info {
-  padding: 12% 5%;
+  padding: 10% 5%;
 }
 
 .background-video {
@@ -790,12 +790,16 @@ body:not(.home) #main {
 }
 
 .course-info header.course-profile {
-  margin-top: 3rem;
+  // margin-top: 3rem;
+  overflow: visible;
   box-shadow: none;
+  // padding-bottom: 3rem;
+  background: transparent;
 }
 
 .course-info header.course-profile .intro-inner-wrapper {
   height: 23rem;
+  box-shadow: none;
 }
 
 .course-info header.course-profile .intro-inner-wrapper .intro>.heading-group {
@@ -1074,6 +1078,143 @@ body:not(.home) #main {
 
   .heading-group p {
     width: 100%;
+  }
+}
+
+/* Asegurar que la imagen del hero nunca desaparezca en tamaños intermedios */
+.course-info header.course-profile .intro-inner-wrapper .media .hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (min-width: 901px) and (max-width: 1100px) {
+  .course-info header.course-profile .intro-inner-wrapper {
+    position: relative !important;
+    height: auto !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .table {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .intro {
+    position: static !important;
+    z-index: 0 !important;
+    width: 100% !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .media {
+    display: block !important;
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .media .hero,
+  .course-info header.course-profile .intro-inner-wrapper .media .hero img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .media .hero {
+    min-height: 240px !important;
+  }
+
+  /* Separación extra para que el CTA no se pise con la sección siguiente */
+  // .course-info header.course-profile { 
+  //   margin-bottom: 4rem !important;
+  // }
+
+  .course-info header.course-profile .intro-inner-wrapper {
+    padding-bottom: 1.5rem !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .intro .main-cta {
+    margin-bottom: 2rem !important;
+  }
+
+  /* Empujar la sección de detalles hacia abajo para evitar solapamiento */
+  .course-info > .container {
+    margin-top: 2rem !important;
+  }
+}
+
+/* Forzar visibilidad y tamaño correcto en 765px–900px */
+@media screen and (min-width: 765px) and (max-width: 900px) {
+  .course-info header.course-profile .intro-inner-wrapper {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    height: auto !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .media {
+    display: block !important;
+    position: relative !important;
+    z-index: 2 !important;
+    width: 100% !important;
+    margin-bottom: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .media .hero,
+  .course-info header.course-profile .intro-inner-wrapper .media .hero img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .intro {
+    position: static !important;
+    z-index: 1 !important;
+    width: 100% !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .media .hero {
+    min-height: 240px !important;
+  }
+
+  /* Empujar la sección de detalles hacia abajo para evitar solapamiento */
+  .course-info > .container {
+    margin-top: 2rem !important;
+  }
+}
+
+/* Mobile real (<900px): imagen arriba, texto abajo, todo visible */
+@media screen and (max-width: 900px) {
+  .course-info header.course-profile .intro-inner-wrapper .table {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .media {
+    order: -1 !important; /* primero */
+    display: block !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .intro {
+    order: 0 !important;
+    position: static !important;
+    z-index: 1 !important;
+  }
+
+  .course-info header.course-profile .intro-inner-wrapper .media .hero,
+  .course-info header.course-profile .intro-inner-wrapper .media .hero img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .course-info header.course-profile { 
+    margin-bottom: 3rem !important;
   }
 }
 
