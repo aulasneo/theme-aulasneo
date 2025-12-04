@@ -327,7 +327,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   top: 0px;
   /* Fijar altura consistente para evitar variaciones por viewport */
   height: 80px;
-  width: -moz-available !important;
+  width: 100%;
   background: transparent;
   transition: background 1s ease, color 1s ease;
   z-index: 1000;
@@ -371,6 +371,7 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   flex-direction: row;
   justify-content: center;
   align-items: baseline;
+  width: 100%;
 }
 
 .nav-header .link,
