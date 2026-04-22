@@ -1,7 +1,49 @@
 @font-face {
-   font-family: 'Quicksand';
-   src: url('#{$static-path}/fonts/Quicksand-VariableFont_wght.ttf') format('truetype supports variations'),
-        url('#{$static-path}/fonts/Quicksand-VariableFont_wght.ttf') format('truetype-variations');
+  font-family: 'Quicksand Variable';
+  src: url('#{$static-path}/fonts/Quicksand-VariableFont_wght.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('#{$static-path}/fonts/static/Quicksand-Light.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('#{$static-path}/fonts/static/Quicksand-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('#{$static-path}/fonts/static/Quicksand-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('#{$static-path}/fonts/static/Quicksand-SemiBold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  src: url('#{$static-path}/fonts/static/Quicksand-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
 }
 
 /* Example:

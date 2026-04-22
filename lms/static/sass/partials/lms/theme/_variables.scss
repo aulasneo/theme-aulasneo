@@ -19,15 +19,15 @@ $accent-a: #00BBF9;
 $accent-b: #FFEE88;
 
 
-$font-family-sans-serif: Quicksand !default;
-$font-family-title: Quicksand;
+$font-family-sans-serif: 'Quicksand Variable', 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !default;
+$font-family-title: 'Quicksand Variable', 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-$monospace: Quicksand !default;
-$serif: Quicksand !default;
+$monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !default;
+$serif: Georgia, Cambria, 'Times New Roman', Times, serif !default;
 
 // newer variables/standards
-$f-serif: Quicksand !default;
-$f-monospace: Quicksand !default;
+$f-serif: Georgia, Cambria, 'Times New Roman', Times, serif !default;
+$f-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !default;
 
 
 // Initialize the Open edX Bootstrap theme
