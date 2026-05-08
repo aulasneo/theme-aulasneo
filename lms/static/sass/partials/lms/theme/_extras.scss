@@ -477,32 +477,32 @@ button.osano-cm-info-dialog-header__close.osano-cm-close svg {
   }
 }
 
-/* Ajuste global: evitar que el contenido quede tapado por el header fijo
-   Solo aplicar en páginas que no son home */
-body:not(.home) .content-wrapper {
-  margin-top: 115px;
-}
+// /* Ajuste global: evitar que el contenido quede tapado por el header fijo
+//    Solo aplicar en páginas que no son home */
+// body:not(.home) .content-wrapper {
+//   margin-top: 115px;
+// }
 
-/* Aplicar también a plantillas que usan #main en lugar de .content-wrapper */
-body:not(.home) #main {
-  margin-top: 115px;
-}
+// /* Aplicar también a plantillas que usan #main en lugar de .content-wrapper */
+// body:not(.home) #main {
+//   margin-top: 115px;
+// }
 
-/* Altura de header y compensación en mobile */
-@media screen and (max-width: 768px) {
-  .home-banner {
-    height: 64px;
-  }
-  body:not(.home) .content-wrapper {
-    margin-top: 80px;
-  }
+// /* Altura de header y compensación en mobile */
+// @media screen and (max-width: 768px) {
+//   .home-banner {
+//     height: 64px;
+//   }
+//   body:not(.home) .content-wrapper {
+//     margin-top: 80px;
+//   }
 
-  body:not(.home) #main {
-    margin-top: 80px;
-  }
+//   body:not(.home) #main {
+//     margin-top: 80px;
+//   }
 
  
-}
+// }
 
 //
 
